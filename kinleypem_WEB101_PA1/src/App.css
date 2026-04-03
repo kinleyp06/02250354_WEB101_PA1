@@ -1,138 +1,164 @@
-/* RESET STYLES - removes default browser margins/padding so everything looks consistent */
+/* Resetting default browser margins and paddings */
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;  /* makes width calculations easier - includes padding in width */
+  box-sizing: border-box;
 }
 
-/* BODY STYLES - applies to the whole page */
+/* Body styling */
 body {
-  font-family: system-ui, -apple-system, sans-serif;  /* clean, modern font */
-  background: #f5f5f5;  /* light gray background */
-}
-
-/* MAIN APP CONTAINER - uses flexbox to push footer to bottom */
-.app {
-  min-height: 100vh;  /* takes up full viewport height */
-  display: flex;
-  flex-direction: column;  /* stacks header, main, footer vertically */
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #ffffff;
 }
 
 /* ========== HEADER STYLES ========== */
 .header {
-  background: white;
-  padding: 1.5rem;  /* rem = relative to font size, good for accessibility */
-  text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);  /* subtle shadow under header */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: white;
+  border-bottom: 1px solid #e2e2e2;
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
-.header h1 {
-  color: #333;
+/* Logo section */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-/* ========== PRODUCT GRID - RESPONSIVE DESIGN ========== */
-/* RESPONSIVE DESIGN means the layout changes based on screen size */
-/* I'm using CSS Grid and Media Queries to achieve this */
-
-.product-grid {
-  flex: 1;  /* takes up remaining space, pushing footer down */
-  padding: 2rem;
-  display: grid;  /* using CSS Grid layout */
-  gap: 1.5rem;  /* space between cards */
-  max-width: 1200px;  /* limits width on huge screens */
-  margin: 0 auto;  /* centers the grid horizontally */
-  width: 100%;
+.pin-icon {
+  font-size: 1.8rem;
 }
 
-/* MOBILE FIRST DESIGN - default is for phones (smallest screens) */
-/* On mobile: 1 card takes full width */
-.product-grid {
-  grid-template-columns: 1fr;  /* 1fr = 1 fraction = full width */
-}
-
-/* TABLET BREAKPOINT - screens 768px and wider */
-/* On tablet: 2 cards side by side */
-@media (min-width: 768px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);  /* 2 equal columns */
-  }
-}
-
-/* DESKTOP BREAKPOINT - screens 1024px and wider */
-/* On desktop: 3 cards side by side */
-@media (min-width: 1024px) {
-  .product-grid {
-    grid-template-columns: repeat(3, 1fr);  /* 3 equal columns */
-  }
-}
-
-/* ========== PRODUCT CARD STYLES ========== */
-.product-card {
-  background: white;
-  border-radius: 12px;  /* rounded corners */
-  overflow: hidden;  /* keeps image corners rounded */
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);  /* subtle shadow */
-  transition: transform 0.2s;  /* smooth animation when hovering */
-  text-align: center;
-  padding-bottom: 1rem;
-}
-
-/* HOVER EFFECT - card lifts up slightly when mouse hovers over it */
-.product-card:hover {
-  transform: translateY(-5px);  /* moves card up 5 pixels */
-}
-
-/* PRODUCT IMAGE inside card */
-.product-card img {
-  width: 100%;  /* fills card width */
-  height: 200px;  /* fixed height so all cards are even */
-  object-fit: cover;  /* crops image to fit without distortion */
-}
-
-/* PRODUCT NAME */
-.product-card h3 {
-  margin: 0.75rem 0 0.25rem;
-  font-size: 1.1rem;
-}
-
-/* PRODUCT PRICE */
-.price {
-  color: #e44d26;  /* orange color */
+.logo h1 {
   font-size: 1.3rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
+  color: #e60023;
 }
 
-/* PRODUCT DESCRIPTION */
-.description {
-  color: #666;  /* gray text */
-  font-size: 0.85rem;
-  padding: 0 1rem;
-  margin-bottom: 1rem;
+/* Search bar styling */
+.search-bar input {
+  padding: 0.7rem 1.2rem;
+  border-radius: 2rem;
+  border: none;
+  background-color: #e9e9e9;
+  width: 250px;
+  font-size: 0.9rem;
+  outline: none;
 }
 
-/* ADD TO CART BUTTON */
-.buy-btn {
-  background: #007bff;  /* blue */
+.search-bar input:focus {
+  background-color: #e2e2e2;
+}
+
+/* ========== PIN GRID - RESPONSIVE LAYOUT ========== */
+/* Using CSS Grid for the layout. The number of columns changes based on screen size */
+.pin-grid {
+  padding: 1.5rem;
+  display: grid;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Mobile screens - 1 column */
+.pin-grid {
+  grid-template-columns: 1fr;
+}
+
+/* Tablet screens - 2 columns */
+@media (min-width: 768px) {
+  .pin-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop screens - 3 columns */
+@media (min-width: 1024px) {
+  .pin-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ========== PIN CARD STYLES ========== */
+.pin-card {
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+/* Hover effect - card lifts up slightly */
+.pin-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Image container - needed for absolute positioning of the save button */
+.pin-image-container {
+  position: relative;
+}
+
+.pin-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Save button - hidden by default, appears on hover */
+.save-btn {
+  position: absolute;
+  top: 0.8rem;
+  right: 0.8rem;
+  background-color: #e60023;
   color: white;
   border: none;
-  padding: 0.5rem 1.5rem;
-  border-radius: 25px;  /* pill shape */
-  cursor: pointer;  /* changes mouse to hand icon */
-  font-size: 0.9rem;
-  transition: background 0.2s;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-weight: bold;
+  font-size: 0.8rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s ease;
 }
 
-/* BUTTON HOVER EFFECT - darkens when mouse hovers */
-.buy-btn:hover {
-  background: #0056b3;  /* darker blue */
+/* Save button appears when hovering over the image container */
+.pin-image-container:hover .save-btn {
+  opacity: 1;
 }
 
-/* ========== FOOTER STYLES ========== */
-.footer {
-  text-align: center;
-  padding: 1.5rem;
-  background: #333;  /* dark gray */
-  color: white;
-  margin-top: auto;  /* pushes footer to bottom when content is short */
+/* Save button hover effect - darker red */
+.save-btn:hover {
+  background-color: #b0001c;
+}
+
+/* Pin information section */
+.pin-info {
+  padding: 0.6rem 0.5rem;
+}
+
+.pin-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin-bottom: 0.3rem;
+  color: #111;
+}
+
+.pin-actions {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #555;
+}
+
+.author-name {
+  font-size: 0.75rem;
+}
+
+.like-count {
+  font-size: 0.75rem;
 }

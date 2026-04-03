@@ -1,96 +1,89 @@
-// IMPORTING NECESSARY FILES
-// ProductCard is a reusable component I created - it's like a template for each product
-import ProductCard from './components/ProductCard'
-// CSS file for styling everything on the page
+// Importing my reusable pin component
+import PinCard from './components/PinCard'
+// Importing the CSS file for styling
 import './App.css'
 
-// MAIN APP COMPONENT - This is like the "container" that holds everything on the page
+// Main App component - this is the parent that holds everything
 function App() {
   
-  // DATA SOURCE FOR REUSABLE COMPONENTS
-  // This is an array (list) of products. Each product is an object (a bundle of info)
-  // I'm hardcoding this data because the assignment requires a data source
-  // In a real app, this could come from a database or API
-  const products = [
-    { 
-      id: 1,  // unique ID to help React track each product
-      name: "Wireless Headphones", 
-      price: "$49.99", 
-      image: "https://picsum.photos/id/1/200",  // random placeholder image from picsum
-      description: "Noise cancelling, 20hr battery" 
+  // DATA SOURCE - creating an array of pin objects
+  // Each pin needs an id, image, title, author, and like count
+  // I used picsum.photos for free placeholder images
+  const pins = [
+    {
+      id: 1,
+      image: "https://i.pinimg.com/736x/d6/3a/85/d63a85972c46c388d6ded49aaa748d78.jpg",
+      title: "ALCHEMY OF SOUL POSTER",
+      author: "Kdrama Lover",
+      likes: "1.5M"
     },
-    { 
-      id: 2, 
-      name: "Smart Watch", 
-      price: "$199.99", 
-      image: "https://picsum.photos/id/2/200", 
-      description: "Track your fitness" 
+    {
+      id: 2,
+      image: "https://i.pinimg.com/1200x/12/84/a1/1284a1e0ca5ee708c0eef4662323589b.jpg",
+      title: "The Great Wall of China",
+      author: "Travellers' story",
+      likes: "85k"
     },
-    { 
-      id: 3, 
-      name: "Laptop Stand", 
-      price: "$29.99", 
-      image: "https://picsum.photos/id/3/200", 
-      description: "Ergonomic aluminum" 
+    {
+      id: 3,
+      image: "https://i.pinimg.com/736x/cb/04/1b/cb041bab6b5b3b1b327411b7bcfe2c12.jpg",
+      title: "The Summer I Turned Pretty",
+      author: "Great movies",
+      likes: "2.1k"
     },
-    { 
-      id: 4, 
-      name: "USB-C Cable", 
-      price: "$12.99", 
-      image: "https://picsum.photos/id/4/200", 
-      description: "6ft, braided" 
+    {
+      id: 4,
+      image: "https://i.pinimg.com/1200x/82/35/ce/8235cea867da62c679f7f7603545c320.jpg",
+      title: "Statue of Liberty",
+      author: "Newyorkers",
+      likes: "567k"
     },
-    { 
-      id: 5, 
-      name: "Mouse Pad", 
-      price: "$9.99", 
-      image: "https://picsum.photos/id/5/200", 
-      description: "RGB lighting" 
+    {
+      id: 5,
+      image: "https://i.pinimg.com/736x/7c/c3/c3/7cc3c324161eee4b465bbd919b8ffb5f.jpg",
+      title: "LA City",
+      author: "City Explorer",
+      likes: "3.4k"
     },
-    { 
-      id: 6, 
-      name: "Webcam Cover", 
-      price: "$5.99", 
-      image: "https://picsum.photos/id/6/200", 
-      description: "Privacy slider" 
+    {
+      id: 6,
+      image: "https://i.pinimg.com/736x/8a/e3/5f/8ae35fce091021189b0fcd5793d955b9.jpg",
+      title: "Northen Lights",
+      author: "Beautyof Earth",
+      likes: "945k"
     }
   ]
 
-  // WHAT GETS DISPLAYED ON SCREEN (JSX - looks like HTML but it's JavaScript)
+  // Rendering the page structure
   return (
-    <div className="app">  {/* main container with class name for styling */}
+    <div className="app">
       
-      {/* HEADER SECTION - shows title of my recreated webpage */}
+      {/* Header section with logo and search bar */}
       <header className="header">
-        <h1>🛒 My Shop</h1>
-        <p>Recreated Web Page - Product Gallery</p>
+        <div className="logo">
+          <span className="pin-icon">📍</span>
+          <h1>PinBoard</h1>
+        </div>
+        <div className="search-bar">
+          <input type="text" placeholder="Search for ideas..." />
+        </div>
       </header>
       
-      {/* PRODUCT GRID SECTION - .map() loops through each product and creates a card */}
-      {/* This is where the REUSABLE COMPONENT is used multiple times */}
-      {/* .map() is like saying "for each product in the list, do something" */}
-      <main className="product-grid">
-        {products.map(product => (
-          // The ProductCard component is REUSABLE - I use it 6 times with different data
-          // Each prop (name, price, image, description) passes data from parent to child
-          <ProductCard 
-            key={product.id}           // 'key' helps React identify which item changed
-            name={product.name}        // passing product name as a prop
-            price={product.price}      // passing price as a prop
-            image={product.image}      // passing image URL as a prop
-            description={product.description}  // passing description as a prop
+      {/* Grid container for all pins */}
+      {/* Using .map() to loop through the pins array and create a PinCard for each one */}
+      <main className="pin-grid">
+        {pins.map(pin => (
+          <PinCard 
+            key={pin.id}           // key helps React identify each pin
+            image={pin.image}      // passing image URL as prop
+            title={pin.title}      // passing title as prop
+            author={pin.author}    // passing author name as prop
+            likes={pin.likes}      // passing like count as prop
           />
         ))}
       </main>
-
-      {/* FOOTER SECTION - simple copyright notice */}
-      <footer className="footer">
-        <p>© 2025 - Responsive React Demo</p>
-      </footer>
     </div>
   )
 }
 
-// EXPORTING so other files can use this App component
-// Vite looks for this export to render the page
 export default App

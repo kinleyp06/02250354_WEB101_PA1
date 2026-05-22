@@ -102,7 +102,7 @@ The objective of this project is to build a fully-featured Pinterest-inspired we
 
 ## Project Structure
 
-![PS](Project Structure.jpg)
+<img src=Project Structure.png>
 
 ## Key Components
 

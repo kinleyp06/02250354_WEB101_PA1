@@ -94,7 +94,7 @@ function App() {
       <header className="header">
         <div className="logo">
           <span className="pin-icon">📌</span>
-          <h1>PinBoard</h1>
+          <h1>Pinterest</h1>
         </div>
         <div className="search-bar">
           <input
@@ -159,7 +159,7 @@ function App() {
 
       {/* FOOTER */}
       <footer className="footer">
-        <p>&copy; 2026 PinBoard. Built with React & Vite</p>
+        <p>&copy; 2026 Pinterest. Built with React & Vite</p>
       </footer>
     </div>
   );
